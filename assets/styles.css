@@ -56,10 +56,21 @@ a{color:inherit;text-decoration:none}
 .cards-4{grid-template-columns:repeat(1,1fr)}
 @media(min-width:720px){.cards-4{grid-template-columns:repeat(2,1fr)}}
 @media(min-width:1040px){.cards-4{grid-template-columns:repeat(4,1fr)}}
-.card{background:var(--panel);border:1px solid var(--stroke);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow)}
+.card{background:var(--panel);border:1px solid var(--stroke);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);cursor:pointer;transition:transform 0.2s, box-shadow 0.2s;}
+.card:hover{transform:translateY(-4px);box-shadow:0 15px 40px rgba(0,0,0,.4), 0 0 15px var(--accent);}
 .card img{width:100%;height:220px;object-fit:cover;display:block}
 .card .body{padding:14px}
 .card .role{color:#ffb3b8;font-size:13px}
+
+/* Modal for card popup */
+.modal{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.8);display:flex;align-items:center;justify-content:center;z-index:100;opacity:0;pointer-events:none;transition:opacity 0.3s;}
+.modal.active{opacity:1;pointer-events:auto;}
+.modal-content{background:var(--panel);border:1px solid var(--stroke);border-radius:var(--radius);max-width:400px;width:90%;overflow:hidden;box-shadow:var(--shadow);}
+.modal-img{width:100%;height:auto;display:block;}
+.modal-text{padding:20px;text-align:center;color:var(--text);}
+.modal-text h3{margin:0 0 4px;font-size:24px;}
+.modal-text .role{color:#ffb3b8;font-size:14px;display:block;margin-bottom:10px;}
+.modal-text p{margin:0;color:var(--muted);}
 
 /* Contact */
 .contact{grid-template-columns:1fr}
@@ -103,13 +114,13 @@ html {
   z-index: 2;
 }
 
-/* Keep the right column below the CTA */
+
 .hero .split > div:last-child {
   position: relative;
   z-index: 1;
 }
 
-/* Prevent the decorative grid from swallowing clicks */
+
 .kit {
   pointer-events: none;
 }
@@ -117,14 +128,14 @@ html {
   pointer-events: auto; /* still clickable if you need links inside */
 }
 
-/* Safety net for the buttons */
+
 .btn {
   position: relative;
   z-index: 3;
   pointer-events: auto;
 }
 
-/* Make sure the hero glow layer never intercepts clicks */
+
 .hero::before {
   pointer-events: none;
 }
